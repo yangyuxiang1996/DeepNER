@@ -6,10 +6,10 @@ export OUTPUT_DIR="./out"
 
 export GPU_IDS="0"
 export BERT_TYPE="roberta_wwm"  # roberta_wwm / roberta_wwm_large / uer_large
-export BERT_DIR="../bert/torch_$BERT_TYPE"
+export BERT_DIR="/Users/mac/models/torch_$BERT_TYPE"
 
 export MODE="train"
-export TASK_TYPE="crf"
+export TASK_TYPE="crf" # crf / mrc / span
 
 python main.py \
 --gpu_ids=$GPU_IDS \

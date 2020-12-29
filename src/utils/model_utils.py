@@ -86,10 +86,10 @@ class ConditionalLayerNorm(nn.Module):
 
         self.eps = eps
 
-        self.weight = nn.Parameter(torch.Tensor(normalized_shape))
+        self.weight = nn.Parameter(torch.Tensor(normalized_shape))  # (b, h)
         self.bias = nn.Parameter(torch.Tensor(normalized_shape))
 
-        self.weight_dense = nn.Linear(cond_shape, normalized_shape, bias=False)
+        self.weight_dense = nn.Linear(cond_shape, normalized_shape, bias=False) # cond_shape: 2*h, normalized_shape: h
         self.bias_dense = nn.Linear(cond_shape, normalized_shape, bias=False)
 
         self.reset_weight_and_bias()
@@ -401,8 +401,8 @@ class MRCModel(BaseModel):
 
         out_dims = mid_linear_dims
 
-        self.start_fc = nn.Linear(out_dims, 2)
-        self.end_fc = nn.Linear(out_dims, 2)
+        self.start_fc = nn.Linear(out_dims, 2) # start索引
+        self.end_fc = nn.Linear(out_dims, 2) # end索引
 
         reduction = 'none'
         if loss_type == 'ce':

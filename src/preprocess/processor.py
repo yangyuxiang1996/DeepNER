@@ -171,7 +171,7 @@ def fine_grade_tokenize(raw_text, tokenizer):
         if _ch in [' ', '\t', '\n']:
             tokens.append('[BLANK]')
         else:
-            if not len(tokenizer.tokenize(_ch)):
+            if not len(tokenizer.tokenize(_ch)): # tokenizer.tokenize方法Converts a string in a sequence of tokens, using the tokenizer.
                 tokens.append('[INV]')
             else:
                 tokens.append(_ch)
@@ -358,7 +358,7 @@ def convert_span_example(ex_idx, example: InputExample, tokenizer: BertTokenizer
                          max_seq_len, ent2id):
     set_type = example.set_type
     raw_text = example.text
-    entities = example.labels
+    entities = example.labels # (label, entity, start_index)
     pseudo = example.pseudo
 
     tokens = fine_grade_tokenize(raw_text, tokenizer)
@@ -465,7 +465,7 @@ def convert_mrc_example(ex_idx, example: InputExample, tokenizer: BertTokenizer,
 
             stop_mask_ranges = []
 
-            text_a = ent2query[_type]
+            text_a = ent2query[_type] # question
             tokens_a = fine_grade_tokenize(text_a, tokenizer)
 
             for _label in label_dict[_type]:
@@ -479,8 +479,8 @@ def convert_mrc_example(ex_idx, example: InputExample, tokenizer: BertTokenizer,
                 end_ids = end_ids[:max_seq_len - len(tokens_a) - 3]
                 print('产生了不该有的截断')
 
-            start_ids = [0] + [0] * len(tokens_a) + [0] + start_ids + [0]
-            end_ids = [0] + [0] * len(tokens_a) + [0] + end_ids + [0]
+            start_ids = [0] + [0] * len(tokens_a) + [0] + start_ids + [0] # [CLS] question [SEP] sentence [SEP]
+            end_ids = [0] + [0] * len(tokens_a) + [0] + end_ids + [0] # [CLS] question [SEP] sentence [SEP]
 
             # pad
             if len(start_ids) < max_seq_len:
@@ -600,7 +600,7 @@ def convert_examples_to_features(task_type, examples, max_seq_len, bert_dir, ent
                 ent2query=ent2id,
                 tokenizer=tokenizer
             )
-        else:
+        else: # span
             feature, tmp_callback = convert_span_example(
                 ex_idx=i,
                 example=example,
