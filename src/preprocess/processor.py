@@ -358,7 +358,7 @@ def convert_span_example(ex_idx, example: InputExample, tokenizer: BertTokenizer
                          max_seq_len, ent2id):
     set_type = example.set_type
     raw_text = example.text
-    entities = example.labels # (label, entity, start_index)
+    entities = example.labels # (type, entity, offset)
     pseudo = example.pseudo
 
     tokens = fine_grade_tokenize(raw_text, tokenizer)
