@@ -1,4 +1,4 @@
 *.pyc
-./out
+out
 */__pycache__
 *.txt
