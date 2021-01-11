@@ -118,7 +118,7 @@ class NERProcessor:
         new_labels, new_distant_labels = [], []
         end_index = start_index + len(sent)
 
-        for _label in labels:
+        for _label in labels: # [_, type, start_index, end_index, entity]
             if start_index <= _label[2] <= _label[3] <= end_index:
                 new_offset = _label[2] - start_index
 
@@ -139,9 +139,9 @@ class NERProcessor:
         examples = []
 
         for i, item in enumerate(raw_examples):
-            text = item['text']
-            distant_labels = item['candidate_entities']
-            pseudo = item['pseudo']
+            text = item['text']  # 文本
+            distant_labels = item['candidate_entities']  # 候选实体
+            pseudo = item['pseudo']  # 是否为伪
 
             sentences = cut_sent(text, self.cut_sent_len)
             start_index = 0
@@ -206,7 +206,7 @@ def cut_sent(text, max_seq_len):
     # 细粒度划分
     sentences_v1 = cut_sentences_v1(text)
     for sent_v1 in sentences_v1:
-        if len(sent_v1) > max_seq_len - 2:
+        if len(sent_v1) > max_seq_len - 2:  # 有两个特殊标记CLS、SEP
             sentences_v2 = cut_sentences_v2(sent_v1)
             sentences.extend(sentences_v2)
         else:
@@ -276,7 +276,7 @@ def convert_crf_example(ex_idx, example: InputExample, tokenizer: BertTokenizer,
                         max_seq_len, ent2id):
     set_type = example.set_type
     raw_text = example.text
-    entities = example.labels
+    entities = example.labels  # [type, entity, start_index]
     pseudo = example.pseudo
 
     callback_info = (raw_text,)
