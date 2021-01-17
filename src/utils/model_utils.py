@@ -243,7 +243,7 @@ class CRFModel(BaseModel):
             out = (tokens_loss,)
 
         else:
-            tokens_out = self.crf_module.decode(emissions=emissions, mask=attention_masks.byte())
+            tokens_out = self.crf_module.viterbi_decode(emissions=emissions, mask=attention_masks.byte())
 
             out = (tokens_out, emissions)
 

@@ -1,0 +1,19 @@
+{
+  "O": 0,
+  "B-BRAND": 1,
+  "B-FUNC": 2,
+  "B-SCENE": 3,
+  "B-TYPE": 4,
+  "B-SYS": 5,
+  "B-PRICE": 6,
+  "B-HARD": 7,
+  "B-OUTLOOK": 8,
+  "I-BRAND": 9,
+  "I-FUNC": 10,
+  "I-SCENE": 11,
+  "I-TYPE": 12,
+  "I-SYS": 13,
+  "I-PRICE": 14,
+  "I-HARD": 15,
+  "I-OUTLOOK": 16
+}

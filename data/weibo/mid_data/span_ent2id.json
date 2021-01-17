@@ -1,0 +1,10 @@
+{
+  "BRAND": 1,
+  "FUNC": 2,
+  "SCENE": 3,
+  "TYPE": 4,
+  "SYS": 5,
+  "PRICE": 6,
+  "HARD": 7,
+  "OUTLOOK": 8
+}

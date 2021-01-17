@@ -4,12 +4,12 @@ export MID_DATA_DIR="./data/mid_data"
 export RAW_DATA_DIR="./data/raw_data"
 export OUTPUT_DIR="./out"
 
-export GPU_IDS="0"
+export GPU_IDS="-1"
 export BERT_TYPE="roberta_wwm"  # roberta_wwm / roberta_wwm_large / uer_large
 export BERT_DIR="/Users/mac/models/torch_$BERT_TYPE"
 
 export MODE="train"
-export TASK_TYPE="crf" # crf / mrc / span
+export TASK_TYPE="span" # crf / mrc / span
 
 python main.py \
 --gpu_ids=$GPU_IDS \
@@ -23,7 +23,7 @@ python main.py \
 --train_epochs=10 \
 --swa_start=5 \
 --attack_train="" \
---train_batch_size=24 \
+--train_batch_size=1 \
 --dropout_prob=0.1 \
 --max_seq_len=512 \
 --lr=2e-5 \

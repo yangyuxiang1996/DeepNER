@@ -334,13 +334,13 @@ def convert_crf_example(ex_idx, example: InputExample, tokenizer: BertTokenizer,
     attention_masks = encode_dict['attention_mask']
     token_type_ids = encode_dict['token_type_ids']
 
-    # if ex_idx < 3:
-    #     logger.info(f"*** {set_type}_example-{ex_idx} ***")
-    #     logger.info(f'text: {" ".join(tokens)}')
-    #     logger.info(f"token_ids: {token_ids}")
-    #     logger.info(f"attention_masks: {attention_masks}")
-    #     logger.info(f"token_type_ids: {token_type_ids}")
-    #     logger.info(f"labels: {label_ids}")
+    if ex_idx < 3:
+        print(f"*** {set_type}_example-{ex_idx} ***")
+        print(f'text: {" ".join(tokens)}')
+        print(f"token_ids: {token_ids}")
+        print(f"attention_masks: {attention_masks}")
+        print(f"token_type_ids: {token_type_ids}")
+        print(f"labels: {label_ids}")
 
     feature = CRFFeature(
         # bert inputs
@@ -414,15 +414,15 @@ def convert_span_example(ex_idx, example: InputExample, tokenizer: BertTokenizer
     attention_masks = encode_dict['attention_mask']
     token_type_ids = encode_dict['token_type_ids']
 
-    # if ex_idx < 3:
-    #     logger.info(f"*** {set_type}_example-{ex_idx} ***")
-    #     logger.info(f'text: {" ".join(tokens)}')
-    #     logger.info(f"token_ids: {token_ids}")
-    #     logger.info(f"attention_masks: {attention_masks}")
-    #     logger.info(f"token_type_ids: {token_type_ids}")
-    #     if start_ids and end_ids:
-    #         logger.info(f"start_ids: {start_ids}")
-    #         logger.info(f"end_ids: {end_ids}")
+    if ex_idx < 3:
+        print(f"*** {set_type}_example-{ex_idx} ***")
+        print(f'text: {" ".join(tokens)}')
+        print(f"token_ids: {token_ids}")
+        print(f"attention_masks: {attention_masks}")
+        print(f"token_type_ids: {token_type_ids}")
+        if start_ids and end_ids:
+            print(f"start_ids: {start_ids}")
+            print(f"end_ids: {end_ids}")
 
     feature = SpanFeature(token_ids=token_ids,
                           attention_masks=attention_masks,
@@ -509,15 +509,17 @@ def convert_mrc_example(ex_idx, example: InputExample, tokenizer: BertTokenizer,
             attention_masks = encode_dict['attention_mask']
             token_type_ids = encode_dict['token_type_ids']
 
-            # if ex_idx < 3:
-            #     logger.info(f"*** {set_type}_example-{ex_idx} ***")
-            #     logger.info(f'text: {" ".join(tokens_b)}')
-            #     logger.info(f"token_ids: {token_ids}")
-            #     logger.info(f"attention_masks: {attention_masks}")
-            #     logger.info(f"token_type_ids: {token_type_ids}")
-            #     logger.info(f'entity type: {_type}')
-            #     logger.info(f"start_ids: {start_ids}")
-            #     logger.info(f"end_ids: {end_ids}")
+            if ex_idx < 3:
+                print(f"*** {set_type}_example-{ex_idx} ***")
+                print(f'text: {" ".join(tokens_b)}')
+                print(f'entity type: {_type}')
+                print(f'query: {ent2query[_type]}')
+                print(f'new token: {" ".join(tokens_a + tokens_b)}')
+                print(f"token_ids: {token_ids}")
+                print(f"attention_masks: {attention_masks}")
+                print(f"token_type_ids: {token_type_ids}")
+                print(f"start_ids: {start_ids}")
+                print(f"end_ids: {end_ids}")
 
             feature = MRCFeature(token_ids=token_ids,
                                  attention_masks=attention_masks,
